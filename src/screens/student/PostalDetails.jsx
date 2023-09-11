@@ -4,10 +4,6 @@ import React from 'react';
 const PostalDetails = () => {
   return (
     <ScrollView px={5} pt={3} bgColor={'white'}>
-      <Heading borderBottomWidth={2} borderBottomColor={'secondary.500'}>
-        Postal Details
-      </Heading>
-
       <VStack mt={8} space={4}>
         <Heading size={'md'} bold underline>
           Local Addres

@@ -2,7 +2,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Dimensions} from 'react-native';
 
 import BottomTabBar from '../components/BottomTabBar';
-import Home from '../screens/student/Home';
+import HomeRoutes from '../routes/Home.routes';
 import Identity from '../screens/student/Identity';
 import Notice from '../screens/student/Notice';
 import ProfileRoutes from './Profile.routes';
@@ -42,7 +42,7 @@ function StudentRoutes() {
           tabBarLabel: routenames.STUDENT.SUB_ROUTES.HOME.LABEL,
           headerTitle: routenames.STUDENT.SUB_ROUTES.HOME.LABEL,
         }}
-        component={Home}
+        component={HomeRoutes}
       />
       <Tab.Screen
         name={routenames.STUDENT.SUB_ROUTES.STUDENT_ID.NAME}

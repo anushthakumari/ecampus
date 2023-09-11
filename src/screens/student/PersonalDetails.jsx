@@ -4,10 +4,6 @@ import React from 'react';
 const PersonalDetails = () => {
   return (
     <ScrollView px={5} pt={3} bgColor={'white'}>
-      <Heading borderBottomWidth={2} borderBottomColor={'secondary.500'}>
-        Personal Details
-      </Heading>
-
       <VStack mt={8} space={4}>
         <Box>
           <Heading color={'muted.500'} size="sm">

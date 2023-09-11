@@ -30,6 +30,33 @@ const routenames = {
         KEY: 'HOME',
         NAME: 'HOME',
         LABEL: 'Home',
+        SUB_ROUTES: {
+          MAIN_HOME: {
+            KEY: 'MAIN_HOME',
+            NAME: 'MAIN_HOME',
+            LABEL: 'Home',
+          },
+          MARKET_PLACE: {
+            KEY: 'MARKET_PLACE',
+            NAME: 'MARKET_PLACE',
+            LABEL: 'Market Place',
+          },
+          CHAT_BOT: {
+            KEY: 'CHAT_BOT',
+            NAME: 'CHAT_BOT',
+            LABEL: 'Chat Bot',
+          },
+          WEBINAR: {
+            KEY: 'WEBINAR',
+            NAME: 'WEBINAR',
+            LABEL: 'Webinar',
+          },
+          CALCULATOR: {
+            KEY: 'CALCULATOR',
+            NAME: 'CALCULATOR',
+            LABEL: 'Calculator',
+          },
+        },
       },
       STUDENT_ID: {
         KEY: 'STUDENT_ID',

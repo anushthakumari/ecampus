@@ -4,10 +4,6 @@ import React from 'react';
 const ContactDetails = () => {
   return (
     <ScrollView px={5} pt={3} bgColor={'white'}>
-      <Heading borderBottomWidth={2} borderBottomColor={'secondary.500'}>
-        Contact Details
-      </Heading>
-
       <VStack mt={8} space={4}>
         <HStack>
           <Box flex={1}>

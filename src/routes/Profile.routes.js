@@ -13,9 +13,12 @@ function ProfileRoutes() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShown: false,
+        headerTitleStyle: {
+          fontFamily: 'Urbanist-SemiBold',
+        },
       }}>
       <Stack.Screen
+        options={{headerShown: false}}
         name={routenames.STUDENT.SUB_ROUTES.PROFILE.SUB_ROUTES.ALL_DETAILS.NAME}
         component={Profile}
       />
@@ -23,15 +26,30 @@ function ProfileRoutes() {
         name={
           routenames.STUDENT.SUB_ROUTES.PROFILE.SUB_ROUTES.PERSONAL_DETAILS.NAME
         }
+        options={{
+          headerTitle:
+            routenames.STUDENT.SUB_ROUTES.PROFILE.SUB_ROUTES.PERSONAL_DETAILS
+              .LABEL,
+        }}
         component={PersonalDetails}
       />
       <Stack.Screen
+        options={{
+          headerTitle:
+            routenames.STUDENT.SUB_ROUTES.PROFILE.SUB_ROUTES.CONTACT_DETAILS
+              .LABEL,
+        }}
         name={
           routenames.STUDENT.SUB_ROUTES.PROFILE.SUB_ROUTES.CONTACT_DETAILS.NAME
         }
         component={ContactDetails}
       />
       <Stack.Screen
+        options={{
+          headerTitle:
+            routenames.STUDENT.SUB_ROUTES.PROFILE.SUB_ROUTES.POSTAL_DETAILS
+              .LABEL,
+        }}
         name={
           routenames.STUDENT.SUB_ROUTES.PROFILE.SUB_ROUTES.POSTAL_DETAILS.NAME
         }

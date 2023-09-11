@@ -1,28 +1,272 @@
-import {ScrollView, Text, Box, Heading, HStack, Image} from 'native-base';
+import {
+  ScrollView,
+  Text,
+  Box,
+  Heading,
+  HStack,
+  Image,
+  Center,
+  VStack,
+  Badge,
+} from 'native-base';
 import React from 'react';
+import {Dimensions, TouchableOpacity} from 'react-native';
+import Carousel from 'react-native-snap-carousel';
+import {useNavigation} from '@react-navigation/native';
+
+import routenames from '../../constants/routenames';
 
 import hand_img from '../../../assets/images/hand.png';
+import logo_img from '../../../assets/images/logo.png';
+import chatbot_img from '../../../assets/images/cahtbot.png';
+import calculator_img from '../../../assets/images/calculator.png';
+import marketplace_img from '../../../assets/images/marketplace.png';
+import webinar_img from '../../../assets/images/webinar.png';
+
+const screenWidth = Dimensions.get('screen').width;
+
+const sliderWidth = screenWidth - 30;
+const itemWidth = sliderWidth - 10;
 
 const Home = () => {
+  const navigation = useNavigation();
+  const handleMenuClick = key => {
+    navigation.navigate(
+      routenames.STUDENT.SUB_ROUTES.HOME.SUB_ROUTES[key].NAME,
+    );
+  };
+  const renderCarouselItem = ({item, index}) => {
+    return (
+      <VStack
+        padding={3}
+        borderWidth={2}
+        backgroundColor={'secondary.50'}
+        borderColor={'primary.100'}
+        borderRadius={'md'}
+        w={'100%'}>
+        <VStack space={3}>
+          <Badge borderRadius={'md'} w="20%" colorScheme="success">
+            Notice
+          </Badge>
+          <Heading size={'sm'} bold>
+            FY B-Tech applications are out!
+          </Heading>
+          <Text numberOfLines={2}>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius ipsam
+            provident officia, deserunt non nobis laudantium dolorum minima
+            alias maxime, sapiente, aperiam facilis temporibus ullam deleniti
+            modi magnam accusamus debitis.
+          </Text>
+        </VStack>
+      </VStack>
+    );
+  };
+  const renderEventsItem = ({item, index}) => {
+    return (
+      <HStack
+        padding={3}
+        borderWidth={2}
+        backgroundColor={'primary.50'}
+        borderColor={'secondary.100'}
+        borderRadius={'md'}
+        justifyContent={'space-between'}
+        alignItems={'flex-start'}
+        w={'100%'}>
+        <Image
+          flex={0.2}
+          src={item.src}
+          alt={item.title}
+          size={'md'}
+          borderColor={'secondary.500'}
+          borderWidth={2}
+          borderRadius={'md'}
+        />
+        <Heading
+          textTransform={'capitalize'}
+          flex={0.7}
+          size={'sm'}
+          fontWeight={600}>
+          {item.title}
+        </Heading>
+      </HStack>
+    );
+  };
   return (
     <ScrollView px={5} pt={3} bgColor={'white'}>
       <HStack
         justifyContent={'space-between'}
         borderRadius={'md'}
         padding={4}
+        mb={3}
         backgroundColor={'secondary.800'}>
         <Box flex={0.8}>
-          <Heading color={'white'} bold>
-            Hello,
+          <Heading
+            size={'sm'}
+            textTransform={'capitalize'}
+            color={'white'}
+            bold>
+            Hello, welcome to
+          </Heading>
+          <Heading size={'md'} color={'white'} bold>
+            GGSESTC's E-campus
           </Heading>
           <Heading color={'white'} size={'md'} bold>
-            Abhishek!
+            John!
           </Heading>
         </Box>
-        <Image flex={0.2} source={hand_img} alt="hii" size={'md'} />
+        <Box flex={0.2}>
+          <Image source={hand_img} alt="hii" size={'sm'} />
+        </Box>
       </HStack>
+
+      <Center mb={5}>
+        <Box>
+          <Image source={logo_img} alt="logo" />
+          <Heading textAlign={'center'} bold>
+            GGSESTC
+          </Heading>
+        </Box>
+      </Center>
+
+      <VStack space={6}>
+        <VStack marginTop={3} space={4}>
+          <Heading
+            width={'40%'}
+            borderColor={'secondary.50'}
+            borderBottomWidth={5}
+            bold>
+            Notice Board
+          </Heading>
+          <Carousel
+            data={[1, 2, 3, 4]}
+            renderItem={renderCarouselItem}
+            sliderWidth={sliderWidth}
+            itemWidth={itemWidth}
+            loop
+            autoplay
+          />
+        </VStack>
+
+        <HStack shadow={8} justifyContent={'space-between'}>
+          <TouchableOpacity
+            onPress={() =>
+              handleMenuClick(
+                routenames.STUDENT.SUB_ROUTES.HOME.SUB_ROUTES.MARKET_PLACE.KEY,
+              )
+            }>
+            <VStack
+              borderRadius={'md'}
+              borderColor={'secondary.200'}
+              width={screenWidth / 2.3}
+              borderWidth={1}
+              justifyContent={'center'}
+              alignItems={'center'}>
+              <Image size={'xl'} alt="market place" source={marketplace_img} />
+              <Text textAlign={'center'} bold>
+                Market Place
+              </Text>
+            </VStack>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              handleMenuClick(
+                routenames.STUDENT.SUB_ROUTES.HOME.SUB_ROUTES.CHAT_BOT.KEY,
+              )
+            }>
+            <VStack
+              borderRadius={'md'}
+              borderWidth={1}
+              borderColor={'secondary.200'}
+              width={screenWidth / 2.3}
+              justifyContent={'center'}
+              alignItems={'center'}>
+              <Image size={'xl'} alt="market place" source={chatbot_img} />
+              <Text textAlign={'center'} bold>
+                Chat Bot
+              </Text>
+            </VStack>
+          </TouchableOpacity>
+        </HStack>
+
+        <HStack justifyContent={'space-between'}>
+          <TouchableOpacity
+            onPress={() =>
+              handleMenuClick(
+                routenames.STUDENT.SUB_ROUTES.HOME.SUB_ROUTES.WEBINAR.KEY,
+              )
+            }>
+            <VStack
+              borderRadius={'md'}
+              borderColor={'secondary.200'}
+              width={screenWidth / 2.3}
+              borderWidth={1}
+              justifyContent={'center'}
+              alignItems={'center'}>
+              <Image size={'xl'} alt="market place" source={webinar_img} />
+              <Text textAlign={'center'} bold>
+                Webinar
+              </Text>
+            </VStack>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              handleMenuClick(
+                routenames.STUDENT.SUB_ROUTES.HOME.SUB_ROUTES.CALCULATOR.KEY,
+              )
+            }>
+            <VStack
+              borderRadius={'md'}
+              borderWidth={1}
+              borderColor={'secondary.200'}
+              width={screenWidth / 2.3}
+              justifyContent={'center'}
+              alignItems={'center'}>
+              <Image size={'xl'} alt="market place" source={calculator_img} />
+              <Text textAlign={'center'} bold>
+                CGPA Calculator
+              </Text>
+            </VStack>
+          </TouchableOpacity>
+        </HStack>
+
+        <VStack marginTop={3} space={4}>
+          <Heading
+            width={'40%'}
+            borderColor={'secondary.50'}
+            borderBottomWidth={5}
+            bold>
+            Highlights
+          </Heading>
+          <Carousel
+            data={highlights}
+            renderItem={renderEventsItem}
+            sliderWidth={sliderWidth}
+            itemWidth={itemWidth}
+            layout="tinder"
+            loop
+            autoplay
+          />
+        </VStack>
+      </VStack>
+
+      <Box h={300} />
     </ScrollView>
   );
 };
 
 export default Home;
+
+var highlights = [
+  {
+    title: 'TREE PLANTATION @ GGSESTC, KANDRA BY ROTARY CLUB, BOKARO',
+    src: 'https://ggsestc.ac.in/images/news-and-events/4060.jpeg',
+  },
+  {
+    title: "WELCOMING NEWLY APPOINTED HON'BLE VICE CHANCELLOR, JUT, RANCHI",
+    src: 'https://ggsestc.ac.in/images/news-and-events/4059.jpeg',
+  },
+  {
+    title: 'ONE DAY SEMINAR ON CYBER SECURITY',
+    src: 'https://ggsestc.ac.in/images/news-and-events/4057.jpeg',
+  },
+];
