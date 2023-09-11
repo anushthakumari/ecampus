@@ -1,5 +1,5 @@
 import {
-  View,
+  ScrollView,
   Text,
   Heading,
   Center,
@@ -12,11 +12,14 @@ import {
 import React from 'react';
 import QRCode from 'react-native-qrcode-svg';
 
+import useAuth from '../../hooks/useAuth';
+
 import logo_img from '../../../assets/images/logo.png';
 
 const Identity = () => {
+  const auth_data = useAuth();
   return (
-    <View px={5} pt={3} w="100%" h="100%" bgColor={'white'}>
+    <ScrollView px={5} pt={3} w="100%" h="100%" bgColor={'white'}>
       <Heading size={'2xl'}>Hello There!</Heading>
       <Heading size={'md'}>Here's your ID Card!</Heading>
 
@@ -46,28 +49,31 @@ const Identity = () => {
             w={'100%'}
             bgColor={'secondary.900'}
             borderRadius={'2xl'}>
-            <HStack w="100%">
-              <VStack
-                alignItems={'center'}
-                justifyContent={'center'}
-                space={2}
-                flex={1}>
+            <Center mb={6}>
+              <VStack alignItems={'center'} justifyContent={'center'} space={2}>
                 <Avatar
                   bg="cyan.500"
                   alignSelf="center"
-                  size="2xl"
+                  size="xl"
                   source={{
-                    uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+                    uri: auth_data.profile_url,
                   }}>
-                  HS
+                  {auth_data.first_name[0] + auth_data.last_name[0]}
                 </Avatar>
-                <Heading size={'md'} textAlign={'center'} color={'white'} bold>
-                  John Doe
+                <Heading
+                  size={'md'}
+                  textTransform={'capitalize'}
+                  textAlign={'center'}
+                  color={'white'}
+                  bold>
+                  {auth_data.first_name + ' ' + auth_data.last_name}
                 </Heading>
               </VStack>
+            </Center>
+            <HStack space={2} w="100%">
               <Box flex={1}>
-                <HStack w="100%">
-                  <Box flex={1}>
+                <HStack space={1} w="100%">
+                  <Box flex={0.5}>
                     <Text fontSize={16} color={'muted.300'}>
                       Roll No:
                     </Text>
@@ -83,16 +89,24 @@ const Identity = () => {
                   </Box>
                   <Box flex={1}>
                     <Text fontSize={16} color={'white'} bold>
-                      30052
+                      {auth_data.roll_no}
+                    </Text>
+                    <Text
+                      textTransform={'capitalize'}
+                      fontSize={16}
+                      color={'white'}
+                      bold>
+                      {auth_data.degree}
+                    </Text>
+                    <Text
+                      textTransform={'capitalize'}
+                      fontSize={16}
+                      color={'white'}
+                      bold>
+                      {auth_data.branch}
                     </Text>
                     <Text fontSize={16} color={'white'} bold>
-                      B-Tech
-                    </Text>
-                    <Text fontSize={16} color={'white'} bold>
-                      CS
-                    </Text>
-                    <Text fontSize={16} color={'white'} bold>
-                      56892
+                      {auth_data._id}
                     </Text>
                   </Box>
                 </HStack>
@@ -107,8 +121,11 @@ const Identity = () => {
             borderRadius={'2xl'}>
             <HStack w="100%">
               <Box flex={1}>
-                <Text color={'white'} fontSize={16}>
-                  177A Bleecker Street, New York City, NY 10012-1406
+                <Text
+                  textTransform={'capitalize'}
+                  color={'white'}
+                  fontSize={16}>
+                  {auth_data.address}
                 </Text>
               </Box>
               <VStack
@@ -117,7 +134,7 @@ const Identity = () => {
                 space={2}
                 flex={1}>
                 <QRCode
-                  value="Just some string value"
+                  value={auth_data.token}
                   logoSize={30}
                   logoBackgroundColor="transparent"
                 />
@@ -126,7 +143,8 @@ const Identity = () => {
           </Box>
         </VStack>
       </Center>
-    </View>
+      <Box h={300} />
+    </ScrollView>
   );
 };
 

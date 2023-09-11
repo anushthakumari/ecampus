@@ -22,6 +22,7 @@ import {useRoute} from '@react-navigation/native';
 
 import useKeyboardOpen from '../hooks/useKeyboardOpen';
 import {setUser} from '../redux/reducers/auth';
+import {postRequest} from '../utils/axios.utils';
 
 import logo_img from '../../assets/images/logo.png';
 import grd_img from '../../assets/images/grd_1.png';
@@ -41,22 +42,37 @@ const Login = () => {
   const isKeyboardOpen = useKeyboardOpen();
   const dispatch = useDispatch();
 
-  const handleSubmit = () => {
-    setisLoading(true);
-    let regex = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
-    if (!regex.test(email)) {
-      seterrState({email: 'Invalid email!'});
-      return;
-    }
+  const handleSubmit = async () => {
+    try {
+      setisLoading(true);
+      let regex = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
+      if (!regex.test(email)) {
+        seterrState({email: 'Invalid email!'});
+        return;
+      }
 
-    if (pass.length > 12 || pass.length < 6) {
-      seterrState({
-        pass: 'password cannot be less than 6 characters and more than 12 characters!',
+      if (pass.length > 12 || pass.length < 6) {
+        seterrState({
+          pass: 'password cannot be less than 6 characters and more than 12 characters!',
+        });
+        return;
+      }
+
+      const {data} = await postRequest('students/login', {
+        email: email.trim(),
+        password: pass.trim(),
       });
-      return;
-    }
 
-    dispatch(setUser({isLoggedIn: true, type, email}));
+      dispatch(setUser({isLoggedIn: true, type, ...data}));
+    } catch (error) {
+      if (error.response.data) {
+        alert(error.response.data.message);
+      } else {
+        alert('something went wrong!');
+      }
+    } finally {
+      setisLoading(false);
+    }
   };
 
   return (

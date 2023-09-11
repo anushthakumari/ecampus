@@ -18,7 +18,7 @@ import collection_schema from '../../constants/collection_schemas';
 import useAuthState from '../../hooks/useAuth';
 
 const ChatBox = () => {
-  const {id} = useAuthState();
+  const {_id: id} = useAuthState();
 
   const [msgs, setmsgs] = useState([]);
   const flatRef = useRef();
@@ -58,7 +58,6 @@ const ChatBox = () => {
               pos={item.user_id === id ? 'end' : 'start'}
               text={item.text}
               title={item.name}
-              isTeacher={item.is_teacher}
             />
           );
         }}
@@ -97,7 +96,7 @@ const Bubble = ({pos, text, title, isTeacher}) => {
 
 const Composer = () => {
   const [text, settext] = useState('');
-  const {id, name, is_teacher} = useAuthState();
+  const {_id: id, first_name: name} = useAuthState();
 
   const handleSend = () => {
     if (!text || !text.trim()) {
@@ -110,7 +109,6 @@ const Composer = () => {
     //     user_id: id,
     //     text,
     //     name,
-    //     is_teacher,
     //     is_blocked_chat: false,
     //     time_added: firestore.FieldValue.serverTimestamp(),
     //   })

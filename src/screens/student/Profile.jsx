@@ -17,6 +17,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 
 import routenames from '../../constants/routenames';
+import useAuth from '../../hooks/useAuth';
 import {setUser} from '../../redux/reducers/auth';
 
 const menuOptions = [
@@ -40,6 +41,7 @@ const menuOptions = [
 const Profile = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const auth_data = useAuth();
 
   const handlePress = (key = '') => {
     navigation.navigate(
@@ -60,20 +62,30 @@ const Profile = () => {
             alignSelf="center"
             size="2xl"
             source={{
-              uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+              uri: auth_data.profile_url,
             }}>
-            HS
+            {auth_data.first_name[0] + auth_data.last_name[0]}
           </Avatar>
           <Box>
-            <Heading size={'xl'} textAlign={'center'} bold>
-              John Doe
+            <Heading
+              textTransform={'capitalize'}
+              size={'xl'}
+              textAlign={'center'}
+              bold>
+              {auth_data.first_name + ' ' + auth_data.last_name}
             </Heading>
             <Box alignItems={'center'}>
-              <Heading size={'sm'} textAlign={'center'}>
-                B-Tech
+              <Heading
+                textTransform={'capitalize'}
+                size={'sm'}
+                textAlign={'center'}>
+                {auth_data.degree}
               </Heading>
-              <Heading size={'sm'} textAlign={'center'}>
-                Computer Science
+              <Heading
+                textTransform={'capitalize'}
+                size={'sm'}
+                textAlign={'center'}>
+                {auth_data.branch}
               </Heading>
             </Box>
           </Box>

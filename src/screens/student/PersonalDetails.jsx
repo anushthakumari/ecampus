@@ -1,7 +1,11 @@
 import {Heading, ScrollView, Text, HStack, VStack, Box} from 'native-base';
 import React from 'react';
 
+import useAuth from '../../hooks/useAuth';
+
 const PersonalDetails = () => {
+  const auth_data = useAuth();
+
   return (
     <ScrollView px={5} pt={3} bgColor={'white'}>
       <VStack mt={8} space={4}>
@@ -9,8 +13,8 @@ const PersonalDetails = () => {
           <Heading color={'muted.500'} size="sm">
             Full Name
           </Heading>
-          <Heading size={'lg'} bold>
-            John D. Roger
+          <Heading textTransform={'capitalize'} size={'lg'} bold>
+            {auth_data.first_name + ' ' + auth_data.last_name}
           </Heading>
         </Box>
         <HStack>
@@ -19,7 +23,7 @@ const PersonalDetails = () => {
               Roll Number
             </Heading>
             <Heading size={'lg'} bold>
-              33569
+              {auth_data.roll_no}
             </Heading>
           </Box>
           <Box flex={1}>
@@ -27,7 +31,7 @@ const PersonalDetails = () => {
               Student Id
             </Heading>
             <Heading size={'lg'} bold>
-              895623
+              {auth_data._id}
             </Heading>
           </Box>
         </HStack>
@@ -35,16 +39,16 @@ const PersonalDetails = () => {
           <Heading size="sm" color={'muted.500'}>
             Degree
           </Heading>
-          <Heading size={'lg'} bold>
-            B. Tech
+          <Heading textTransform={'capitalize'} size={'lg'} bold>
+            {auth_data.degree}
           </Heading>
         </Box>
         <Box>
           <Heading size="sm" color={'muted.500'}>
             Branch
           </Heading>
-          <Heading size={'lg'} bold>
-            Computer Science
+          <Heading textTransform={'capitalize'} size={'lg'} bold>
+            {auth_data.branch}
           </Heading>
         </Box>
         <HStack>
@@ -52,8 +56,8 @@ const PersonalDetails = () => {
             <Heading size="sm" color={'muted.500'}>
               Gender
             </Heading>
-            <Heading size={'lg'} bold>
-              Male
+            <Heading textTransform={'capitalize'} size={'lg'} bold>
+              {auth_data.gender}
             </Heading>
           </Box>
           <Box flex={1}>
@@ -70,8 +74,8 @@ const PersonalDetails = () => {
             <Heading size="sm" color={'muted.500'}>
               Category
             </Heading>
-            <Heading size={'lg'} bold>
-              Open
+            <Heading textTransform={'capitalize'} size={'lg'} bold>
+              {auth_data.category}
             </Heading>
           </Box>
           <Box flex={1}>

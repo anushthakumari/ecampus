@@ -10,13 +10,17 @@ import {
   Badge,
   IconButton,
 } from 'native-base';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Dimensions, TouchableOpacity} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
+import firestore from '@react-native-firebase/firestore';
 
+import Loader from '../../components/Loader';
 import routenames from '../../constants/routenames';
+import collection_schemas from '../../constants/collection_schemas';
+import useAuth from '../../hooks/useAuth';
 
 import hand_img from '../../../assets/images/hand.png';
 import logo_img from '../../../assets/images/logo.png';
@@ -32,6 +36,10 @@ const itemWidth = sliderWidth - 10;
 
 const Home = () => {
   const navigation = useNavigation();
+  const auth_data = useAuth();
+
+  const [notice, setnotice] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
 
   const handleChatPress = () => {
     navigation.navigate(routenames.CHAT_BOX.NAME);
@@ -55,18 +63,17 @@ const Home = () => {
         borderRadius={'md'}
         w={'100%'}>
         <VStack space={3}>
-          <Badge borderRadius={'md'} w="20%" colorScheme="success">
-            Notice
+          <Badge
+            _text={{textTransform: 'capitalize'}}
+            borderRadius={'md'}
+            w="40%"
+            colorScheme="success">
+            {item.type}
           </Badge>
-          <Heading size={'sm'} bold>
-            FY B-Tech applications are out!
+          <Heading textTransform={'capitalize'} size={'sm'} bold>
+            {item.title}
           </Heading>
-          <Text numberOfLines={2}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius ipsam
-            provident officia, deserunt non nobis laudantium dolorum minima
-            alias maxime, sapiente, aperiam facilis temporibus ullam deleniti
-            modi magnam accusamus debitis.
-          </Text>
+          <Text numberOfLines={2}>{item.desc}</Text>
         </VStack>
       </VStack>
     );
@@ -102,6 +109,24 @@ const Home = () => {
       </HStack>
     );
   };
+
+  useEffect(() => {
+    (async () => {
+      try {
+        setisLoading(true);
+        const notice_coll = await firestore()
+          .collection(collection_schemas.materials.name)
+          .get();
+        const dt = [];
+        notice_coll.forEach(d => dt.push(d.data()));
+        setnotice(dt);
+      } catch (error) {
+      } finally {
+        setisLoading(false);
+      }
+    })();
+  }, []);
+
   return (
     <ScrollView px={5} pt={3} bgColor={'white'}>
       <HStack
@@ -121,8 +146,12 @@ const Home = () => {
           <Heading size={'md'} color={'white'} bold>
             GGSESTC's E-campus
           </Heading>
-          <Heading color={'white'} size={'md'} bold>
-            John!
+          <Heading
+            color={'white'}
+            textTransform={'capitalize'}
+            size={'md'}
+            bold>
+            {auth_data.first_name}!
           </Heading>
         </Box>
         <Box flex={0.2}>
@@ -140,23 +169,26 @@ const Home = () => {
       </Center>
 
       <VStack space={6}>
-        <VStack marginTop={3} space={4}>
-          <Heading
-            width={'50%'}
-            borderColor={'secondary.50'}
-            borderBottomWidth={5}
-            bold>
-            Notice Board
-          </Heading>
-          <Carousel
-            data={[1, 2, 3, 4]}
-            renderItem={renderCarouselItem}
-            sliderWidth={sliderWidth}
-            itemWidth={itemWidth}
-            loop
-            autoplay
-          />
-        </VStack>
+        <Loader isLoading={isLoading} />
+        {notice.length ? (
+          <VStack marginTop={3} space={4}>
+            <Heading
+              width={'50%'}
+              borderColor={'secondary.50'}
+              borderBottomWidth={5}
+              bold>
+              Notice Board
+            </Heading>
+            <Carousel
+              data={notice}
+              renderItem={renderCarouselItem}
+              sliderWidth={sliderWidth}
+              itemWidth={itemWidth}
+              loop
+              autoplay
+            />
+          </VStack>
+        ) : null}
 
         <HStack shadow={8} justifyContent={'space-between'}>
           <TouchableOpacity

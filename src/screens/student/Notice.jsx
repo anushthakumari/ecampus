@@ -7,21 +7,67 @@ import {
   Pressable,
   HStack,
   Icon,
+  Box,
 } from 'native-base';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import {Linking} from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
+import Loader from '../../components/Loader';
+import collection_schemas from '../../constants/collection_schemas';
+
 const Notice = () => {
+  const [materials, setmaterials] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        setisLoading(true);
+        const notice_coll = await firestore()
+          .collection(collection_schemas.materials.name)
+          .get();
+        const dt = [];
+        notice_coll.forEach(d => dt.push(d.data()));
+        setmaterials(dt);
+      } catch (error) {
+      } finally {
+        setisLoading(false);
+      }
+    })();
+  }, []);
   return (
     <ScrollView px={5} pt={3} w="100%" h="100%" bgColor={'white'}>
-      <SingleCard />
+      <Loader isLoading={isLoading} />
+      <VStack space={3}>
+        {materials.map((item, idx) => (
+          <SingleCard
+            key={idx}
+            title={item.title}
+            desc={item.desc}
+            type={item.type}
+            timestamp={
+              item.time_added?.toDate().toDateString() +
+              ' ' +
+              item.time_added?.toDate().toLocaleTimeString()
+            }
+            docLink={item.doc_link}
+          />
+        ))}
+      </VStack>
+      {!isLoading && !materials.length ? <Heading>No Data!</Heading> : null}
+      <Box h={300} />
     </ScrollView>
   );
 };
 
 export default Notice;
 
-const SingleCard = () => {
+const SingleCard = ({title, desc, docLink, type}) => {
+  const handlePress = async url => {
+    await Linking.openURL(url);
+  };
   return (
     <VStack
       padding={3}
@@ -31,20 +77,19 @@ const SingleCard = () => {
       borderRadius={'md'}
       w={'100%'}>
       <VStack space={3}>
-        <Badge borderRadius={'md'} w="20%" colorScheme="success">
-          Notice
+        <Badge
+          _text={{textTransform: 'capitalize'}}
+          borderRadius={'md'}
+          w="30%"
+          colorScheme="success">
+          {type}
         </Badge>
-        <Heading size={'sm'} bold>
-          FY B-Tech applications are out!
+        <Heading textTransform={'capitalize'} size={'sm'} bold>
+          {title}
         </Heading>
-        <Text>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius ipsam
-          provident officia, deserunt non nobis laudantium dolorum minima alias
-          maxime, sapiente, aperiam facilis temporibus ullam deleniti modi
-          magnam accusamus debitis.
-        </Text>
+        <Text textTransform={'capitalize'}>{desc}</Text>
 
-        <Pressable>
+        <Pressable onPress={() => handlePress(docLink)}>
           <HStack
             maxW={'50%'}
             bgColor={'primary.200'}
