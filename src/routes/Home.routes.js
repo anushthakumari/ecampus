@@ -2,7 +2,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Home from '../screens/student/Home';
 import MarketPlace from '../screens/student/MarketPlace';
-import PostalDetails from '../screens/student/PostalDetails';
+import Calculator from '../screens/student/Calculator';
+import Webinar from '../screens/student/Webinar';
 
 import routenames from '../constants/routenames';
 
@@ -39,7 +40,7 @@ function HomeRoutes() {
           headerTitle:
             routenames.STUDENT.SUB_ROUTES.HOME.SUB_ROUTES.WEBINAR.LABEL,
         }}
-        component={PostalDetails}
+        component={Webinar}
       />
       <Stack.Screen
         name={routenames.STUDENT.SUB_ROUTES.HOME.SUB_ROUTES.CALCULATOR.NAME}
@@ -47,7 +48,7 @@ function HomeRoutes() {
           headerTitle:
             routenames.STUDENT.SUB_ROUTES.HOME.SUB_ROUTES.CALCULATOR.LABEL,
         }}
-        component={PostalDetails}
+        component={Calculator}
       />
     </Stack.Navigator>
   );

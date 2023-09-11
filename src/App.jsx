@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import LoginRoutes from './routes/Login.routes';
 import StudentRoutes from './routes/Student.routes';
 import Chatbot from './screens/student/Chatbot';
+import ChatBox from './screens/student/ChatBox';
 
 import routenames from './constants/routenames';
 import useAuth from './hooks/useAuth';
@@ -33,6 +34,16 @@ export default function App() {
               },
             }}
             component={Chatbot}
+          />
+          <Stack.Screen
+            name={routenames.CHAT_BOX.NAME}
+            options={{
+              headerTitle: routenames.CHAT_BOX.LABEL,
+              headerTitleStyle: {
+                fontFamily: 'Urbanist-SemiBold',
+              },
+            }}
+            component={ChatBox}
           />
         </>
       ) : (

@@ -8,10 +8,12 @@ import {
   Center,
   VStack,
   Badge,
+  IconButton,
 } from 'native-base';
 import React from 'react';
 import {Dimensions, TouchableOpacity} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 
 import routenames from '../../constants/routenames';
@@ -30,6 +32,10 @@ const itemWidth = sliderWidth - 10;
 
 const Home = () => {
   const navigation = useNavigation();
+
+  const handleChatPress = () => {
+    navigation.navigate(routenames.CHAT_BOX.NAME);
+  };
   const handleMenuClick = key => {
     if (routenames.CHAT_BOT.KEY === key) {
       navigation.navigate(routenames.CHAT_BOT.NAME);
@@ -68,10 +74,11 @@ const Home = () => {
   const renderEventsItem = ({item, index}) => {
     return (
       <HStack
+        space={2}
         padding={3}
         borderWidth={2}
-        backgroundColor={'primary.50'}
-        borderColor={'secondary.100'}
+        backgroundColor={'secondary.50'}
+        borderColor={'primary.100'}
         borderRadius={'md'}
         justifyContent={'space-between'}
         alignItems={'flex-start'}
@@ -81,13 +88,13 @@ const Home = () => {
           src={item.src}
           alt={item.title}
           size={'md'}
-          borderColor={'secondary.500'}
+          borderColor={'primary.200'}
           borderWidth={2}
           borderRadius={'md'}
         />
         <Heading
           textTransform={'capitalize'}
-          flex={0.7}
+          flex={0.8}
           size={'sm'}
           fontWeight={600}>
           {item.title}
@@ -135,7 +142,7 @@ const Home = () => {
       <VStack space={6}>
         <VStack marginTop={3} space={4}>
           <Heading
-            width={'40%'}
+            width={'50%'}
             borderColor={'secondary.50'}
             borderBottomWidth={5}
             bold>
@@ -160,9 +167,9 @@ const Home = () => {
             }>
             <VStack
               borderRadius={'md'}
-              borderColor={'secondary.200'}
+              borderColor={'secondary.50'}
               width={screenWidth / 2.3}
-              borderWidth={1}
+              borderWidth={2}
               justifyContent={'center'}
               alignItems={'center'}>
               <Image size={'xl'} alt="market place" source={marketplace_img} />
@@ -175,8 +182,8 @@ const Home = () => {
             onPress={() => handleMenuClick(routenames.CHAT_BOT.KEY)}>
             <VStack
               borderRadius={'md'}
-              borderWidth={1}
-              borderColor={'secondary.200'}
+              borderWidth={2}
+              borderColor={'secondary.50'}
               width={screenWidth / 2.3}
               justifyContent={'center'}
               alignItems={'center'}>
@@ -197,9 +204,9 @@ const Home = () => {
             }>
             <VStack
               borderRadius={'md'}
-              borderColor={'secondary.200'}
+              borderColor={'secondary.50'}
               width={screenWidth / 2.3}
-              borderWidth={1}
+              borderWidth={2}
               justifyContent={'center'}
               alignItems={'center'}>
               <Image size={'xl'} alt="market place" source={webinar_img} />
@@ -216,8 +223,8 @@ const Home = () => {
             }>
             <VStack
               borderRadius={'md'}
-              borderWidth={1}
-              borderColor={'secondary.200'}
+              borderWidth={2}
+              borderColor={'secondary.50'}
               width={screenWidth / 2.3}
               justifyContent={'center'}
               alignItems={'center'}>
@@ -229,9 +236,44 @@ const Home = () => {
           </TouchableOpacity>
         </HStack>
 
+        <HStack
+          borderRadius={'md'}
+          w="100%"
+          alignItems={'center'}
+          margin={0}
+          padding={0}
+          backgroundColor={'primary.500'}
+          h={50}>
+          <Heading padding={2} color={'white'} flex={3} size={'sm'} bold>
+            Join Ongoing Group Chats
+          </Heading>
+          <VStack
+            flex={1}
+            justifyContent={'center'}
+            margin={0}
+            padding={0}
+            h={'100%'}
+            borderLeftRadius={'3xl'}
+            borderRightRadius={'md'}
+            backgroundColor={'secondary.500'}>
+            <IconButton
+              onPress={handleChatPress}
+              borderRadius={'xl'}
+              size={'md'}
+              variant="ghost"
+              _icon={{
+                size: 'xl',
+                color: 'white',
+                as: MaterialIcons,
+                name: 'arrow-right-alt',
+              }}
+            />
+          </VStack>
+        </HStack>
+
         <VStack marginTop={3} space={4}>
           <Heading
-            width={'40%'}
+            width={'50%'}
             borderColor={'secondary.50'}
             borderBottomWidth={5}
             bold>

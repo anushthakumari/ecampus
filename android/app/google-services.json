@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "365120166793",
+    "project_id": "ecampus-3efd0",
+    "storage_bucket": "ecampus-3efd0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:365120166793:android:714938dd47ffd368ff1f58",
+        "android_client_info": {
+          "package_name": "com.ecampus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBF8IKnkiSD1eNmKHdO5igpKYnoyNzI9yU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -98,6 +98,12 @@ const routenames = {
     NAME: 'CHAT_BOT',
     LABEL: 'Chat Bot',
   },
+
+  CHAT_BOX: {
+    KEY: 'CHAT_BOX',
+    NAME: 'CHAT_BOX',
+    LABEL: 'Group Chats',
+  },
 };
 
 export default routenames;
