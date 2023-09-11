@@ -41,11 +41,6 @@ const routenames = {
             NAME: 'MARKET_PLACE',
             LABEL: 'Market Place',
           },
-          CHAT_BOT: {
-            KEY: 'CHAT_BOT',
-            NAME: 'CHAT_BOT',
-            LABEL: 'Chat Bot',
-          },
           WEBINAR: {
             KEY: 'WEBINAR',
             NAME: 'WEBINAR',
@@ -96,6 +91,12 @@ const routenames = {
         LABEL: 'Notice',
       },
     },
+  },
+
+  CHAT_BOT: {
+    KEY: 'CHAT_BOT',
+    NAME: 'CHAT_BOT',
+    LABEL: 'Chat Bot',
   },
 };
 

@@ -31,6 +31,10 @@ const itemWidth = sliderWidth - 10;
 const Home = () => {
   const navigation = useNavigation();
   const handleMenuClick = key => {
+    if (routenames.CHAT_BOT.KEY === key) {
+      navigation.navigate(routenames.CHAT_BOT.NAME);
+      return;
+    }
     navigation.navigate(
       routenames.STUDENT.SUB_ROUTES.HOME.SUB_ROUTES[key].NAME,
     );
@@ -168,11 +172,7 @@ const Home = () => {
             </VStack>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() =>
-              handleMenuClick(
-                routenames.STUDENT.SUB_ROUTES.HOME.SUB_ROUTES.CHAT_BOT.KEY,
-              )
-            }>
+            onPress={() => handleMenuClick(routenames.CHAT_BOT.KEY)}>
             <VStack
               borderRadius={'md'}
               borderWidth={1}

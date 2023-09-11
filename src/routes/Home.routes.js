@@ -1,8 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Home from '../screens/student/Home';
-import PersonalDetails from '../screens/student/PersonalDetails';
-import ContactDetails from '../screens/student/ContactDetails';
+import MarketPlace from '../screens/student/MarketPlace';
 import PostalDetails from '../screens/student/PostalDetails';
 
 import routenames from '../constants/routenames';
@@ -32,15 +31,7 @@ function HomeRoutes() {
           headerTitle:
             routenames.STUDENT.SUB_ROUTES.HOME.SUB_ROUTES.MARKET_PLACE.LABEL,
         }}
-        component={PersonalDetails}
-      />
-      <Stack.Screen
-        name={routenames.STUDENT.SUB_ROUTES.HOME.SUB_ROUTES.CHAT_BOT.NAME}
-        options={{
-          headerTitle:
-            routenames.STUDENT.SUB_ROUTES.HOME.SUB_ROUTES.CHAT_BOT.LABEL,
-        }}
-        component={ContactDetails}
+        component={MarketPlace}
       />
       <Stack.Screen
         name={routenames.STUDENT.SUB_ROUTES.HOME.SUB_ROUTES.WEBINAR.NAME}
