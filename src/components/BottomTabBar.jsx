@@ -11,6 +11,15 @@ import routenames from '../constants/routenames';
 const {width} = Dimensions.get('window');
 
 const BottomTabBar = ({state, descriptors, navigation}) => {
+  const do_hide = state.routes.some(route => {
+    const {options} = descriptors[route.key];
+    return options.tabBarVisible === false;
+  });
+
+  if (do_hide) {
+    return null;
+  }
+
   return (
     <View style={styles.mainContainer}>
       {state.routes.map((route, index) => {

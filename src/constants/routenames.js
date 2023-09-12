@@ -49,7 +49,7 @@ const routenames = {
           CALCULATOR: {
             KEY: 'CALCULATOR',
             NAME: 'CALCULATOR',
-            LABEL: 'Calculator',
+            LABEL: 'CGPA Calculator',
           },
         },
       },
