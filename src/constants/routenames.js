@@ -116,6 +116,54 @@ const routenames = {
     NAME: 'CHAT_BOX',
     LABEL: 'Group Chats',
   },
+
+  TEACHER: {
+    KEY: 'TEACHER',
+    NAME: 'TEACHER',
+    LABEL: 'Teacher',
+    SUB_ROUTES: {
+      TEACHER_HOME: {
+        KEY: 'TEACHER_HOME',
+        NAME: 'TEACHER_HOME',
+        LABEL: 'Home',
+      },
+      ID_VERIFY: {
+        KEY: 'ID_VERIFY',
+        NAME: 'ID_VERIFY',
+        LABEL: 'Verify ID',
+      },
+      TEACHER_CALCULATOR: {
+        KEY: 'TEACHER_CALCULATOR',
+        NAME: 'TEACHER_CALCULATOR',
+        LABEL: 'CGPA Calculator',
+      },
+      TEACHER_MARKET_PLACE: {
+        KEY: 'TEACHER_MARKET_PLACE',
+        NAME: 'TEACHER_MARKET_PLACE',
+        LABEL: 'Market Place',
+      },
+      TEACHER_CHAT_BOT: {
+        KEY: 'TEACHER_CHAT_BOT',
+        NAME: 'TEACHER_CHAT_BOT',
+        LABEL: 'Chat Bot',
+      },
+      TEACHER_WEBINAR_LIVE: {
+        KEY: 'TEACHER_WEBINAR_LIVE',
+        NAME: 'TEACHER_WEBINAR_LIVE',
+        LABEL: 'Host Webinar',
+      },
+      TEACHER_PROFILE: {
+        KEY: 'TEACHER_PROFILE',
+        NAME: 'TEACHER_PROFILE',
+        LABEL: 'Profile',
+      },
+      TEACHER_NOTICE: {
+        KEY: 'TEACHER_NOTICE',
+        NAME: 'TEACHER_NOTICE',
+        LABEL: 'Notice',
+      },
+    },
+  },
 };
 
 export default routenames;

@@ -4,6 +4,7 @@ import {TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import routenames from '../constants/routenames';
+import vars from '../constants/vars';
 
 import teacher_img from '../../assets/images/teacher.png';
 import student_img from '../../assets/images/studen.png';
@@ -24,7 +25,8 @@ const LoginType = () => {
           <Heading textAlign="center" size={'xl'} bold>
             Who are you?
           </Heading>
-          <TouchableOpacity onPress={() => handlePress('student')}>
+          <TouchableOpacity
+            onPress={() => handlePress(vars.LOGIN_TYPES.STUDENT)}>
             <Box
               padding={2}
               borderWidth={1}
@@ -36,7 +38,8 @@ const LoginType = () => {
               </Text>
             </Box>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => handlePress('teacher')}>
+          <TouchableOpacity
+            onPress={() => handlePress(vars.LOGIN_TYPES.TEACHER)}>
             <Box
               padding={2}
               borderWidth={1}

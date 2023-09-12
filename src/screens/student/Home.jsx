@@ -66,7 +66,7 @@ const Home = () => {
           <Badge
             _text={{textTransform: 'capitalize'}}
             borderRadius={'md'}
-            w="40%"
+            w="50%"
             colorScheme="success">
             {item.type}
           </Badge>

@@ -64,7 +64,7 @@ const Profile = () => {
             source={{
               uri: auth_data.profile_url,
             }}>
-            {auth_data.first_name[0] + auth_data.last_name[0]}
+            {auth_data.first_name?.[0] + auth_data.last_name?.[0]}
           </Avatar>
           <Box>
             <Heading

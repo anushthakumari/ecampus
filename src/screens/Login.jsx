@@ -23,6 +23,7 @@ import {useRoute} from '@react-navigation/native';
 import useKeyboardOpen from '../hooks/useKeyboardOpen';
 import {setUser} from '../redux/reducers/auth';
 import {postRequest} from '../utils/axios.utils';
+import vars from '../constants/vars';
 
 import logo_img from '../../assets/images/logo.png';
 import grd_img from '../../assets/images/grd_1.png';
@@ -58,7 +59,10 @@ const Login = () => {
         return;
       }
 
-      const {data} = await postRequest('students/login', {
+      const request_url =
+        type === vars.LOGIN_TYPES.TEACHER ? 'teachers/login' : 'students/login';
+
+      const {data} = await postRequest(request_url, {
         email: email.trim(),
         password: pass.trim(),
       });

@@ -80,7 +80,7 @@ const SingleCard = ({title, desc, docLink, type}) => {
         <Badge
           _text={{textTransform: 'capitalize'}}
           borderRadius={'md'}
-          w="30%"
+          w="40%"
           colorScheme="success">
           {type}
         </Badge>
@@ -89,21 +89,23 @@ const SingleCard = ({title, desc, docLink, type}) => {
         </Heading>
         <Text textTransform={'capitalize'}>{desc}</Text>
 
-        <Pressable onPress={() => handlePress(docLink)}>
-          <HStack
-            maxW={'50%'}
-            bgColor={'primary.200'}
-            borderRadius={'md'}
-            justifyContent={'space-between'}
-            padding={2}>
-            <Text>View Attachment</Text>
-            <Icon
-              as={<MaterialIcons name="remove-red-eye" />}
-              size={5}
-              ml="2"
-            />
-          </HStack>
-        </Pressable>
+        {docLink ? (
+          <Pressable onPress={() => handlePress(docLink)}>
+            <HStack
+              maxW={'50%'}
+              bgColor={'primary.200'}
+              borderRadius={'md'}
+              justifyContent={'space-between'}
+              padding={2}>
+              <Text>View Attachment</Text>
+              <Icon
+                as={<MaterialIcons name="remove-red-eye" />}
+                size={5}
+                ml="2"
+              />
+            </HStack>
+          </Pressable>
+        ) : null}
       </VStack>
     </VStack>
   );
