@@ -103,16 +103,16 @@ const Composer = () => {
       return;
     }
 
-    // firestore()
-    //   .collection(collection_schema.groupchats.name)
-    //   .add({
-    //     user_id: id,
-    //     text,
-    //     name,
-    //     is_blocked_chat: false,
-    //     time_added: firestore.FieldValue.serverTimestamp(),
-    //   })
-    //   .then(() => settext(''));
+    firestore()
+      .collection(collection_schema.groupchats.name)
+      .add({
+        user_id: id,
+        text,
+        name,
+        is_blocked_chat: false,
+        time_added: firestore.FieldValue.serverTimestamp(),
+      })
+      .then(() => settext(''));
   };
 
   return (

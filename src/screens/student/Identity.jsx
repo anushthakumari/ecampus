@@ -8,8 +8,10 @@ import {
   HStack,
   VStack,
   Image,
+  Button,
+  AlertDialog,
 } from 'native-base';
-import React from 'react';
+import * as React from 'react';
 import QRCode from 'react-native-qrcode-svg';
 
 import useAuth from '../../hooks/useAuth';
@@ -18,6 +20,9 @@ import logo_img from '../../../assets/images/logo.png';
 
 const Identity = () => {
   const auth_data = useAuth();
+  const [isOpen, setIsOpen] = React.useState(false);
+  const onClose = () => setIsOpen(false);
+  const cancelRef = React.useRef(null);
   return (
     <ScrollView px={5} pt={3} w="100%" h="100%" bgColor={'white'}>
       <Heading size={'2xl'}>Hello There!</Heading>
@@ -58,7 +63,7 @@ const Identity = () => {
                   source={{
                     uri: auth_data.profile_url,
                   }}>
-                  {auth_data.first_name[0] + auth_data.last_name[0]}
+                  {auth_data.first_name?.[0] + auth_data.last_name?.[0]}
                 </Avatar>
                 <Heading
                   size={'md'}
@@ -134,16 +139,44 @@ const Identity = () => {
                 space={2}
                 flex={1}>
                 <QRCode
-                  value={auth_data.token}
-                  logoSize={30}
+                  value={auth_data._id}
+                  logoSize={10}
                   logoBackgroundColor="transparent"
                 />
+                <Button onPress={() => setIsOpen(true)}>Verify This ID</Button>
               </VStack>
             </HStack>
           </Box>
         </VStack>
       </Center>
       <Box h={300} />
+
+      <AlertDialog
+        leastDestructiveRef={cancelRef}
+        isOpen={isOpen}
+        onClose={onClose}>
+        <AlertDialog.Content>
+          <AlertDialog.CloseButton />
+          <AlertDialog.Header>Scan Below QR</AlertDialog.Header>
+          <AlertDialog.Body>
+            <QRCode value={auth_data._id} logoBackgroundColor="transparent" />
+          </AlertDialog.Body>
+          <AlertDialog.Footer>
+            <Button.Group space={2}>
+              <Button
+                variant="unstyled"
+                colorScheme="coolGray"
+                onPress={onClose}
+                ref={cancelRef}>
+                Cancel
+              </Button>
+              <Button colorScheme="danger" onPress={onClose}>
+                Close
+              </Button>
+            </Button.Group>
+          </AlertDialog.Footer>
+        </AlertDialog.Content>
+      </AlertDialog>
     </ScrollView>
   );
 };

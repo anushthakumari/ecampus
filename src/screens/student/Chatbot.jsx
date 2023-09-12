@@ -30,7 +30,6 @@ export default function Chatbot({}) {
   }, []);
 
   const onSend = useCallback((messages = []) => {
-    return;
     setMessages(previousMessages =>
       GiftedChat.append(previousMessages, messages),
     );
