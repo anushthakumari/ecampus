@@ -45,6 +45,18 @@ const routenames = {
             KEY: 'WEBINAR',
             NAME: 'WEBINAR',
             LABEL: 'Webinar',
+            SUB_ROUTES: {
+              WEBINAR_HOST: {
+                KEY: 'WEBINAR_HOST',
+                NAME: 'WEBINAR_HOST',
+                LABEL: 'Hosting',
+              },
+              WEBINAR_LIVE: {
+                KEY: 'WEBINAR_LIVE',
+                NAME: 'WEBINAR_LIVE',
+                LABEL: 'Live',
+              },
+            },
           },
           CALCULATOR: {
             KEY: 'CALCULATOR',
