@@ -3,7 +3,7 @@ import {GiftedChat} from 'react-native-gifted-chat';
 import {View} from 'native-base';
 import axios from 'axios';
 
-const API_KEY = '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';
+const API_KEY = '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';
 
 const textInputProps = {
   style: {color: 'black', width: '85%'},
