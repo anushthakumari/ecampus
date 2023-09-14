@@ -95,6 +95,11 @@ const routenames = {
             NAME: 'POSTAL_DETAILS',
             LABEL: 'Postal Details',
           },
+          ACADEMIC_DETAILS: {
+            KEY: 'ACADEMIC_DETAILS',
+            NAME: 'ACADEMIC_DETAILS',
+            LABEL: 'Academic Details',
+          },
         },
       },
       NOTICE: {
@@ -135,7 +140,7 @@ const routenames = {
       TEACHER_CALCULATOR: {
         KEY: 'TEACHER_CALCULATOR',
         NAME: 'TEACHER_CALCULATOR',
-        LABEL: 'CGPA Calculator',
+        LABEL: 'Attendance Calculator',
       },
       TEACHER_MARKET_PLACE: {
         KEY: 'TEACHER_MARKET_PLACE',

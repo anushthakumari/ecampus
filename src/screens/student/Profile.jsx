@@ -36,6 +36,11 @@ const menuOptions = [
     icon: 'home',
     key: routenames.STUDENT.SUB_ROUTES.PROFILE.SUB_ROUTES.POSTAL_DETAILS.KEY,
   },
+  {
+    label: 'Academic Details',
+    icon: 'auto-graph',
+    key: routenames.STUDENT.SUB_ROUTES.PROFILE.SUB_ROUTES.ACADEMIC_DETAILS.KEY,
+  },
 ];
 
 const Profile = () => {

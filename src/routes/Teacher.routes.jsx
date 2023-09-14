@@ -7,7 +7,7 @@ import Profile from '../screens/teacher/Profile';
 import Notice from '../screens/teacher/Notice';
 import VerifyStudent from '../screens/teacher/VerifyStudent';
 
-import Calculator from '../screens/student/Calculator';
+import Attendance from '../screens/teacher/Attendance';
 import Chatbot from '../screens/student/Chatbot';
 import MarketPlace from '../screens/student/MarketPlace';
 
@@ -51,7 +51,7 @@ function TeacherRoutes() {
         options={{
           headerTitle: routenames.TEACHER.SUB_ROUTES.TEACHER_CALCULATOR.LABEL,
         }}
-        component={Calculator}
+        component={Attendance}
       />
       <Stack.Screen
         name={routenames.TEACHER.SUB_ROUTES.TEACHER_CHAT_BOT.NAME}

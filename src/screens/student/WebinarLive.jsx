@@ -5,11 +5,12 @@ import ZegoUIKitPrebuiltLiveStreaming, {
   HOST_DEFAULT_CONFIG,
   AUDIENCE_DEFAULT_CONFIG,
 } from '@zegocloud/zego-uikit-prebuilt-live-streaming-rn';
+import {ZEGO_APP_ID, ZEGO_APP_SIGN} from '@env';
 
 import useAuth from '../../hooks/useAuth';
 
 function LivePage(props) {
-  const {_id: id} = useAuth();
+  const {_id: id, first_name} = useAuth();
   const isHost = false;
 
   const navigation = useNavigation();
@@ -25,10 +26,10 @@ function LivePage(props) {
   return (
     <View w="100%" h="100%">
       <ZegoUIKitPrebuiltLiveStreaming
-        appID={1510898812}
-        appSign="0f18c9b00a83568aa0e9491d0611c0f70c7cd6a00656f730759bedd52f577e67"
+        appID={parseInt(ZEGO_APP_ID)}
+        appSign={ZEGO_APP_SIGN}
         userID={id}
-        userName={'user_' + id}
+        userName={first_name}
         liveID="testLiveID"
         config={{
           ...(isHost == true ? HOST_DEFAULT_CONFIG : AUDIENCE_DEFAULT_CONFIG),

@@ -14,6 +14,8 @@ import {Linking} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
+import withTabBarVisibilty from '../../components/withTabBarVisibilty';
+
 import Loader from '../../components/Loader';
 import collection_schemas from '../../constants/collection_schemas';
 
@@ -62,7 +64,7 @@ const Notice = () => {
   );
 };
 
-export default Notice;
+export default withTabBarVisibilty(Notice);
 
 const SingleCard = ({title, desc, docLink, type}) => {
   const handlePress = async url => {

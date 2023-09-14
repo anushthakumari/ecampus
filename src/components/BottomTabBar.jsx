@@ -1,4 +1,5 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 
 import {View, Pressable, Dimensions, StyleSheet} from 'react-native';
 import {Icon, IconButton, Box, Text} from 'native-base';
@@ -11,12 +12,14 @@ import routenames from '../constants/routenames';
 const {width} = Dimensions.get('window');
 
 const BottomTabBar = ({state, descriptors, navigation}) => {
+  const is_tabar_visible = useSelector(state => state.tab_bar_visibility);
+
   const do_hide = state.routes.some(route => {
     const {options} = descriptors[route.key];
     return options.tabBarVisible === false;
   });
 
-  if (do_hide) {
+  if (do_hide || !is_tabar_visible) {
     return null;
   }
 
@@ -47,7 +50,7 @@ const BottomTabBar = ({state, descriptors, navigation}) => {
         const iconprops = getIconProps(route.name);
 
         return (
-          <Box key={index} flex={1} margin={5}>
+          <Box key={index} flex={1} margin={4}>
             <IconButton
               colorScheme={isFocused ? 'primary' : 'secondary'}
               borderRadius={'xl'}

@@ -197,7 +197,7 @@ const Home = () => {
               alignItems={'center'}>
               <Image size={'xl'} alt="market place" source={calculator_img} />
               <Text textAlign={'center'} bold>
-                CGPA Calculator
+                Attendance Calculator
               </Text>
             </VStack>
           </TouchableOpacity>

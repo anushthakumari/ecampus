@@ -2,8 +2,9 @@ import React, {useState, useEffect, useCallback} from 'react';
 import {GiftedChat} from 'react-native-gifted-chat';
 import {View} from 'native-base';
 import axios from 'axios';
+import {GPT_API_KEY} from '@env';
 
-const API_KEY = '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';
+const API_KEY = GPT_API_KEY;
 
 const textInputProps = {
   style: {color: 'black', width: '85%'},

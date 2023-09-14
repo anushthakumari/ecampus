@@ -15,6 +15,7 @@ import * as React from 'react';
 import QRCode from 'react-native-qrcode-svg';
 
 import useAuth from '../../hooks/useAuth';
+import withTabBarVisibilty from '../../components/withTabBarVisibilty';
 
 import logo_img from '../../../assets/images/logo.png';
 
@@ -181,4 +182,4 @@ const Identity = () => {
   );
 };
 
-export default Identity;
+export default withTabBarVisibilty(Identity);

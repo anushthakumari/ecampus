@@ -110,6 +110,10 @@ const Home = () => {
     );
   };
 
+  const toggleTabr = (bool = false) => {
+    navigation.getParent().setOptions({tabBarVisible: bool});
+  };
+
   useEffect(() => {
     (async () => {
       try {
